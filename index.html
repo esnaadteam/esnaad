@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مبادرة إسناد | لأن الجميع يستحق من يسنده</title>
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* الشريط العلوي */
+        .header {
+            background-color: #2c8ef8;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* شعار المبادرة */
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .slogan {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        /* شريط الأخبار المتحرك */
+        .news-ticker {
+            background-color: #f0f7ff;
+            padding: 0.8rem;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 2px solid #2c8ef8;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            animation: ticker 20s linear infinite;
+            padding-left: 100%; /* تغيير الاتجاه إلى اليسار */
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); } /* تحريك إلى اليسار */
+        }
+
+        /* القائمة */
+        nav {
+            background-color: #1a73e8;
+            padding: 0.8rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0.3rem 0.8rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+            padding: 0.3rem 0;
+            display: inline-block;
+        }
+
+        nav ul li a:hover {
+            color: #ffd700;
+        }
+
+        /* المحتوى الرئيسي */
+        .main-content {
+            padding: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 1.5rem;
+            background-color: white;
+            padding: 1.2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .section:hover {
+            transform: translateY(-3px);
+        }
+
+        .section h2 {
+            color: #2c8ef8;
+            margin-bottom: 0.8rem;
+            border-bottom: 2px solid #f0f7ff;
+            padding-bottom: 0.4rem;
+            font-size: 1.4rem;
+            text-align: center; /* توسيط العنوان */
+        }
+
+        .section p {
+            font-size: 1.1rem; /* تكبير خط قسم عن المبادرة */
+            margin-bottom: 0.8rem;
+            text-align: right;
+        }
+
+        /* قسم المؤسسون */
+        .founders-section {
+            text-align: center;
+            background-color: #f0f7ff;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .founders-section h2 {
+            color: #2c8ef8;
+            margin-bottom: 0.8rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.4rem;
+            font-size: 1.3rem;
+        }
+
+        .founders-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .founder-item {
+            background-color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            font-weight: bold;
+            font-size: 1.05rem; /* تكبير خط أسماء المؤسسين */
+        }
+
+        /* الفوتر */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info-footer {
+            background-color: #444;
+            border-radius: 8px;
+            padding: 1rem;
+            max-width: 500px;
+        }
+
+        .contact-info-footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info-footer a {
+            color: #2c8ef8;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .social-links-footer {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-links-footer a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-links-footer a:hover {
+            opacity: 0.8;
+        }
+
+        .social-icon-footer {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* نافذة المحاور */
+        .goals-section {
+            display: none;
+            background-color: white;
+            padding: 1.5rem;
+            margin: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: relative; /* لجعل زر الإغلاق في الزاوية */
+        }
+
+        .goals-section h2 {
+            color: #2c8ef8;
+            margin-bottom: 1.2rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .goals-section h3 {
+            color: #1a73e8;
+            margin: 1.2rem 0 0.6rem;
+            font-size: 1.2rem;
+        }
+
+        .goals-section p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .close-btn {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #2c8ef8;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 0.5rem;
+            background-color: #f0f7ff;
+            border-radius: 5px;
+        }
+
+        /* تحسينات للجوال */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+
+            .slogan {
+                font-size: 1rem;
+            }
+
+            nav ul li a {
+                font-size: 0.85rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .section h2 {
+                font-size: 1.2rem;
+            }
+
+            .goals-section {
+                margin: 1rem;
+                padding: 1.2rem;
+            }
+
+            .goals-section h2 {
+                font-size: 1.3rem;
+            }
+
+            .goals-section h3 {
+                font-size: 1.1rem;
+            }
+
+            .founders-list {
+                gap: 0.3rem;
+            }
+
+            .founder-item {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            .slogan {
+                font-size: 0.9rem;
+            }
+
+            nav ul li a {
+                font-size: 0.8rem;
+            }
+
+            .section h2 {
+                font-size: 1.1rem;
+            }
+
+            .goals-section h2 {
+                font-size: 1.2rem;
+            }
+
+            .founder-item {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">إسناد</div>
+        <div class="slogan">لأن الجميع يستحق من يسنده</div>
+    </header>
+
+    <div class="news-ticker">
+        <div class="ticker-content">🚀 انتظرونا قريباً مع إطلاق مبادرة إسناد 💙 | 🤝 لأن الجميع يستحق من يسنده 🌟 | 🎯 شباب يبني مستقبلاً أفضل ✨</div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <ul>
+                <li><a href="#" onclick="showMainContent()" aria-label="الرئيسية">الرئيسية</a></li>
+                <li><a href="#about" aria-label="عن المبادرة">عن المبادرة</a></li>
+                <li><a href="#" onclick="showGoals()" aria-label="المحاور والأهداف">المحاور والأهداف</a></li>
+                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSc2BTvP9sXEWPHO4NjbPL7VPKc-pC3m8e4vJetTidph0vl2mA/viewform?usp=dialog" target="_blank" aria-label="للتطوع">للتطوع</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main-content" id="mainContent">
+        <section id="about" class="section">
+            <h2>عن المبادرة</h2>
+            <p>مبادرة "إسناد" هي منصة شبابية تسعى إلى تمكين الأفراد من خلال تعليمهم وتطوير مهاراتهم، حيث تركز على تقديم فرص تعليمية متميزة ونشر ثقافة العطاء من خلال العمل الخيري. انطلاقًا من رؤية سمو ولي العهد في دعم الشباب والتعليم، تهدف "إسناد" إلى بناء جيل واعٍ ومؤهل قادر على تحمل المسؤولية والمساهمة الفعالة في تحسين المجتمع. نعمل على تقديم برامج تدريبية وأكاديمية تتيح للشباب فرصة التعلم والنمو، مما يساعد في تحقيق التنمية المستدامة والمشاركة الفعالة في القضايا المجتمعية</p>
+        </section>
+
+        <section class="founders-section">
+            <h2>المؤسسون</h2>
+            <ul class="founders-list">
+                <li class="founder-item">محمد ملكاوي</li>
+                <li class="founder-item">يوسف بدوان</li>
+                <li class="founder-item">رغد بني مصطفى</li>
+                <li class="founder-item">لجين سلام</li>
+            </ul>
+        </section>
+    </div>
+
+    <div class="goals-section" id="goalsSection">
+        <h2>المحاور والأهداف</h2>
+
+        <h3>الهدف الشبابي:</h3>
+        <p>تمكين الشباب من خلال توفير فرص تعليمية وتدريبية تساعدهم في تطوير مهاراتهم الشخصية والمهنية.</p>
+        <p>تشجيع الشباب على المشاركة الفعالة في المبادرات المجتمعية التي تهدف إلى إحداث تغيير إيجابي في المجتمع.</p>
+
+        <h3>الهدف التعليمي:</h3>
+        <p>تقديم برامج تعليمية شاملة ومتخصصة تهدف إلى تعزيز الوعي والتعليم بين الشباب.</p>
+        <p>دعم التعليم في مختلف المجالات، سواء الأكاديمية أو المهنية، لتعزيز قدرة الشباب على قيادة التغيير.</p>
+        <p>تعزيز التعاون مع مبادرة سمو ولي العهد في مجالات التعليم والتطوير، والعمل على تحقيق رؤية سموه في تحسين مستوى التعليم وتطوير مهارات الشباب.</p>
+
+        <h3>الهدف الخيري:</h3>
+        <p>تقديم الدعم للمجتمعات والفئات الأكثر احتياجًا من خلال تنظيم حملات إغاثية وبرامج خيرية تهدف إلى تحسين ظروف الحياة.</p>
+        <p>تنظيم فعاليات خيرية وابتكار حلول مجتمعية لدعم الأسر الفقيرة، الأيتام، وكبار السن، مما يعزز من ثقافة التضامن والعمل الجماعي.</p>
+        <span class="close-btn" onclick="hideGoals()">إغلاق</span>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info-footer">
+                <h3>معلومات التواصل</h3>
+                <p>هاتف: <a href="tel:+962770495848">+962770495848</a></p>
+                <p>بريد إلكتروني: <a href="mailto:esnaadteamjo@gmail.com">esnaadteamjo@gmail.com</a></p>
+            </div>
+
+            <div class="social-links-footer">
+                <a href="https://www.tiktok.com/@esnaadteam" target="_blank" aria-label="تيك توك - صفحة مبادرة إسناد">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" class="social-icon-footer">
+                    تيك توك
+                </a>
+                <a href="https://www.instagram.com/esnaad_team" target="_blank" aria-label="إنستجرام - صفحة مبادرة إسناد">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" class="social-icon-footer">
+                    إنستجرام
+                </a>
+            </div>
+        </div>
+        <p>© 2025 مبادرة إسناد | جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        // التبديل بين الأقسام
+        function showMainContent() {
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('goalsSection').style.display = 'none';
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            return false;
+        }
+
+        function showGoals() {
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('goalsSection').style.display = 'block';
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            return false;
+        }
+
+        function hideGoals() {
+            document.getElementById('goalsSection').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            return false;
+        }
+
+        // التحميل الأولي لشريط الأخبار (تأكد من تعديل المحتوى حسب الحاجة)
+        document.addEventListener('DOMContentLoaded', function() {
+            const tickerContent = document.querySelector('.ticker-content');
+            tickerContent.textContent = '🚀 انتظرونا قريباً مع إطلاق مبادرة إسناد 💙 | 🤝 لأن الجميع يستحق من يسنده 🌟 | 🎯 شباب يبني مستقبلاً أفضل ✨';
+        });
+    </script>
+</body>
+</html>
