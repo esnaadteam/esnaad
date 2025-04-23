@@ -255,6 +255,66 @@
             color: var(--text-color);
         }
 
+        /* قسم الفيديوهات */
+        .videos-section {
+            margin: 2rem 0;
+        }
+
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .video-card {
+            background-color: var(--section-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 560px;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* نسبة 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 1rem;
+        }
+
+        .video-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .video-desc {
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
         /* قسم المؤسسون */
         .founders-section {
             text-align: center;
@@ -531,6 +591,14 @@
                 font-size: 1.1rem;
             }
 
+            .video-container {
+                gap: 1rem;
+            }
+
+            .video-card {
+                max-width: 100%;
+            }
+
             .founders-list {
                 gap: 0.5rem;
             }
@@ -557,6 +625,14 @@
 
             .section h2 {
                 font-size: 1.1rem;
+            }
+
+            .video-title {
+                font-size: 1rem;
+            }
+
+            .video-desc {
+                font-size: 0.8rem;
             }
 
             .founder-item {
@@ -604,6 +680,7 @@
                 <li><a href="#" onclick="showSection('mainContent')" aria-label="الرئيسية">الرئيسية</a></li>
                 <li><a href="#about" aria-label="عن المبادرة">عن المبادرة</a></li>
                 <li><a href="#" onclick="showSection('goalsSection')" aria-label="المحاور والأهداف">المحاور والأهداف</a></li>
+                <li><a href="#videos" aria-label="فيديوهات">فيديوهات</a></li>
                 <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSc2BTvP9sXEWPHO4NjbPL7VPKc-pC3m8e4vJetTidph0vl2mA/viewform?usp=dialog" target="_blank" aria-label="للتطوع">للتطوع</a></li>
             </ul>
         </div>
@@ -613,6 +690,37 @@
         <section id="about" class="section">
             <h2>عن المبادرة</h2>
             <p>مبادرة "إسناد" هي منصة شبابية تسعى إلى تمكين الأفراد من خلال تعليمهم وتطوير مهاراتهم، حيث تركز على تقديم فرص تعليمية متميزة ونشر ثقافة العطاء من خلال العمل الخيري. انطلاقًا من رؤية سمو ولي العهد في دعم الشباب والتعليم، تهدف "إسناد" إلى بناء جيل واعٍ ومؤهل قادر على تحمل المسؤولية والمساهمة الفعالة في تحسين المجتمع. نعمل على تقديم برامج تدريبية وأكاديمية تتيح للشباب فرصة التعلم والنمو، مما يساعد في تحقيق التنمية المستدامة والمشاركة الفعالة في القضايا المجتمعية</p>
+        </section>
+
+        <section id="videos" class="section videos-section">
+            <h2>فيديوهات المبادرة</h2>
+            <p>هنا يمكنك مشاهدة أبرز الفيديوهات التي تشرح أهداف المبادرة وأنشطتها</p>
+            
+            <div class="video-container">
+                <!-- فيديو 1 -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <!-- استبدل الرابط برابط فيديو اليوتيوب الخاص بك -->
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">فيديو تعريفي عن مبادرة إسناد</div>
+                        <div class="video-desc">فيديو يشرح أهداف ورؤية مبادرة إسناد للشباب</div>
+                    </div>
+                </div>
+                
+                <!-- فيديو 2 -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <!-- استبدل الرابط برابط فيديو اليوتيوب الخاص بك -->
+                        <iframe src="https://youtu.be/uHyBqs5PcC0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">أنشطة المبادرة</div>
+                        <div class="video-desc">جولة في أبرز أنشطة وفعاليات مبادرة إسناد</div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section class="founders-section">
@@ -648,7 +756,7 @@
         <div class="footer-content">
             <div class="contact-info-footer">
                 <h3>معلومات التواصل</h3>
-                <p>هاتف: <a href="tel:+962770495848">0770495848</a></p>
+                <p>هاتف: <a href="tel:+962770495848">+962770495848</a></p>
                 <p>بريد إلكتروني: <a href="mailto:esnaadteamjo@gmail.com">esnaadteamjo@gmail.com</a></p>
             </div>
 
