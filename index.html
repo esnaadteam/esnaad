@@ -275,12 +275,8 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             width: 100%;
-            max-width: 560px;
-        }
-
-        .video-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .video-wrapper {
@@ -301,18 +297,19 @@
 
         .video-info {
             padding: 1rem;
+            text-align: center;
         }
 
         .video-title {
             font-weight: bold;
             margin-bottom: 0.5rem;
             color: var(--primary-color);
-            font-size: 1.1rem;
+            font-size: 1.3rem;
         }
 
         .video-desc {
             color: var(--text-color);
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         /* قسم المؤسسون */
@@ -578,6 +575,18 @@
                 font-size: 1.2rem;
             }
 
+            .video-card {
+                max-width: 100%;
+            }
+
+            .video-title {
+                font-size: 1.1rem;
+            }
+
+            .video-desc {
+                font-size: 0.9rem;
+            }
+
             .goals-section {
                 margin: 1rem;
                 padding: 1.2rem;
@@ -589,14 +598,6 @@
 
             .goals-section h3 {
                 font-size: 1.1rem;
-            }
-
-            .video-container {
-                gap: 1rem;
-            }
-
-            .video-card {
-                max-width: 100%;
             }
 
             .founders-list {
@@ -625,14 +626,6 @@
 
             .section h2 {
                 font-size: 1.1rem;
-            }
-
-            .video-title {
-                font-size: 1rem;
-            }
-
-            .video-desc {
-                font-size: 0.8rem;
             }
 
             .founder-item {
@@ -697,16 +690,17 @@
             <p>هنا يمكنك مشاهدة أبرز الفيديوهات التي تشرح أهداف المبادرة وأنشطتها</p>
             
             <div class="video-container">
-                <!-- الفيديو الخاص بك -->
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtu.be/uHyBqs5PcC0" frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen></iframe>
+                        <iframe 
+                            src="https://drive.google.com/file/d/1or9qd6_kiVidWPCbBL495zLLzS78Lm6B/preview" 
+                            allow="autoplay; fullscreen" 
+                            allowfullscreen>
+                        </iframe>
                     </div>
                     <div class="video-info">
                         <div class="video-title">الفيديو التعريفي لمبادرة إسناد</div>
-                        <div class="video-desc">تعرف على رؤية وأهداف مبادرة إسناد للتمكين الشبابي</div>
+                        <div class="video-desc">شاهد أهم أنشطة وفعاليات المبادرة</div>
                     </div>
                 </div>
             </div>
@@ -868,6 +862,19 @@
                 }, 300);
             });
         });
+
+        // تحسين تجربة الفيديو للجوال
+        function adjustVideoSize() {
+            const videoWrapper = document.querySelector('.video-wrapper');
+            if (window.innerWidth < 768) {
+                videoWrapper.style.paddingBottom = '75%';
+            } else {
+                videoWrapper.style.paddingBottom = '56.25%';
+            }
+        }
+        
+        window.addEventListener('resize', adjustVideoSize);
+        adjustVideoSize();
     </script>
 </body>
 </html>
