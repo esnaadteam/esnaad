@@ -9,33 +9,49 @@
     <meta name="author" content="مبادرة إسناد">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary-color: #2c8ef8;
+            --primary-dark: #1a5bb8;
             --secondary-color: #1a73e8;
             --accent-color: #ffd700;
+            --accent-dark: #e6c200;
             --text-color: #333;
+            --text-light: #555;
             --light-bg: #f0f7ff;
             --section-bg: #ffffff;
             --footer-bg: #333;
             --nav-bg: #1a73e8;
             --ticker-bg: #f0f7ff;
             --founder-bg: #f0f7ff;
+            --stats-bg: #e6f2ff;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
 
         /* أنماط الوضع الليلي */
         .dark-mode {
             --primary-color: #3a9dff;
+            --primary-dark: #2a7dcc;
             --secondary-color: #2a7dcc;
             --accent-color: #ffcc00;
+            --accent-dark: #e6b800;
             --text-color: #e0e0e0;
+            --text-light: #b0b0b0;
             --light-bg: #121212;
             --section-bg: #1e1e1e;
             --footer-bg: #000000;
             --nav-bg: #0d47a1;
             --ticker-bg: #1a1a1a;
             --founder-bg: #252525;
+            --stats-bg: #1a1a2e;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         * {
@@ -49,7 +65,7 @@
             background-color: var(--light-bg);
             color: var(--text-color);
             line-height: 1.6;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: var(--transition);
         }
 
         /* الشريط العلوي */
@@ -58,8 +74,21 @@
             color: white;
             padding: 1.5rem 1rem;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--box-shadow);
             position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+            background-size: cover;
+            z-index: 1;
         }
 
         .header-content {
@@ -68,20 +97,42 @@
             align-items: center;
             position: relative;
             width: 100%;
+            z-index: 2;
         }
 
         /* شعار المبادرة */
         .logo {
             font-size: 2.8rem;
-            font-weight: 700;
+            font-weight: 900;
             margin-bottom: 0.5rem;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-color);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+
+        .logo:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
 
         .slogan {
             font-size: 1.3rem;
             font-style: italic;
             opacity: 0.9;
+            font-weight: 500;
         }
 
         /* زر الدارك مود */
@@ -97,11 +148,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
+            transition: var(--transition);
             position: absolute;
             left: 20px;
             top: 50%;
             transform: translateY(-50%);
+            z-index: 3;
         }
 
         .dark-mode-toggle:hover {
@@ -128,7 +180,14 @@
             overflow: hidden;
             border-bottom: 2px solid var(--primary-color);
             font-weight: bold;
-            transition: all 0.3s;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .ticker-container {
+            display: flex;
+            width: 100%;
+            overflow: hidden;
         }
 
         .ticker-content {
@@ -137,6 +196,7 @@
             gap: 1rem;
             animation: ticker 20s linear infinite;
             padding-left: 100%;
+            white-space: nowrap;
         }
 
         .ticker-content span {
@@ -144,9 +204,15 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.3rem 0.8rem;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.1);
             border-radius: 20px;
             color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .ticker-content span:hover {
+            background: rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
         }
 
         @keyframes ticker {
@@ -162,7 +228,7 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: background-color 0.3s;
+            transition: var(--transition);
         }
 
         .nav-container {
@@ -176,43 +242,35 @@
             justify-content: center;
             flex-wrap: wrap;
             padding: 0;
+            gap: 0.5rem;
         }
 
         nav ul li {
-            margin: 0.3rem 0.8rem;
+            margin: 0.3rem 0;
         }
 
         nav ul li a {
             color: white;
             text-decoration: none;
             font-weight: bold;
-            transition: color 0.3s;
+            transition: var(--transition);
             font-size: 0.9rem;
-            padding: 0.3rem 0;
+            padding: 0.5rem 1rem;
             display: inline-block;
             position: relative;
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent-color);
-            transition: width 0.3s;
+            border-radius: var(--border-radius);
         }
 
         nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
             color: var(--accent-color);
-            text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+            transform: translateY(-2px);
         }
 
-        nav ul li a:hover::after {
-            width: 100%;
-            left: 0;
-            right: auto;
+        nav ul li a.active {
+            background-color: var(--accent-color);
+            color: var(--nav-bg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         /* المحتوى الرئيسي */
@@ -225,34 +283,112 @@
         .section {
             margin-bottom: 1.5rem;
             background-color: var(--section-bg);
-            padding: 1.2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: all 0.3s;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
             animation: fadeIn 0.6s ease-out forwards;
             opacity: 0;
             transform: translateY(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--primary-color);
+            transition: var(--transition);
         }
 
         .section:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .section:hover::before {
+            width: 8px;
+            background-color: var(--accent-color);
         }
 
         .section h2 {
             color: var(--primary-color);
-            margin-bottom: 0.8rem;
-            border-bottom: 2px solid var(--light-bg);
-            padding-bottom: 0.4rem;
-            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            font-size: 1.6rem;
             text-align: center;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 3px;
         }
 
         .section p {
             font-size: 1.1rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
             text-align: right;
             color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        /* قسم الإحصائيات */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background-color: var(--stats-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover .stat-number {
+            color: var(--accent-color);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 500;
         }
 
         /* قسم الفيديوهات */
@@ -270,13 +406,18 @@
 
         .video-card {
             background-color: var(--section-bg);
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
             width: 100%;
             max-width: 800px;
             margin: 0 auto;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         .video-wrapper {
@@ -296,31 +437,32 @@
         }
 
         .video-info {
-            padding: 1rem;
+            padding: 1.5rem;
             text-align: center;
         }
 
         .video-title {
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             color: var(--primary-color);
-            font-size: 1.3rem;
+            font-size: 1.4rem;
         }
 
         .video-desc {
             color: var(--text-color);
-            font-size: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
         }
 
         /* قسم المؤسسون */
         .founders-section {
             text-align: center;
             background-color: var(--founder-bg);
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
             margin-bottom: 1.5rem;
-            transition: background-color 0.3s;
+            transition: var(--transition);
             animation: fadeIn 0.6s ease-out 0.3s forwards;
             opacity: 0;
             transform: translateY(20px);
@@ -328,10 +470,21 @@
 
         .founders-section h2 {
             color: var(--primary-color);
-            margin-bottom: 0.8rem;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            padding-bottom: 0.4rem;
-            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            font-size: 1.5rem;
+            position: relative;
+        }
+
+        .founders-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 60px;
+            height: 2px;
+            background-color: var(--accent-color);
         }
 
         .founders-list {
@@ -340,37 +493,46 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 0.5rem;
+            gap: 1.2rem;
+            margin-top: 1rem;
         }
 
         .founder-item {
             background-color: var(--section-bg);
-            padding: 0.8rem 1.2rem;
-            border-radius: 6px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             font-weight: bold;
-            font-size: 1.05rem;
-            transition: all 0.3s;
+            font-size: 1.1rem;
+            transition: var(--transition);
             border-top: 3px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
         }
 
         .founder-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+            border-top-color: var(--accent-color);
+        }
+
+        .founder-icon {
+            color: var(--accent-color);
+            font-size: 1.2rem;
         }
 
         /* نافذة المحاور */
         .goals-section {
             display: none;
             background-color: var(--section-bg);
-            padding: 1.5rem;
+            padding: 2rem;
             margin: 1.5rem auto;
             max-width: 1200px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
             position: relative;
-            transition: background-color 0.3s;
+            transition: var(--transition);
             animation: fadeIn 0.6s ease-out forwards;
             opacity: 0;
             transform: translateY(20px);
@@ -378,40 +540,83 @@
 
         .goals-section h2 {
             color: var(--primary-color);
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .goals-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent-color);
         }
 
         .goals-section h3 {
             color: var(--secondary-color);
-            margin: 1.2rem 0 0.6rem;
-            font-size: 1.2rem;
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .goals-section h3::before {
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
         }
 
         .goals-section p {
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 1.1rem;
+            line-height: 1.8;
             color: var(--text-color);
+            margin-bottom: 0.8rem;
+            padding-right: 1.5rem;
+            position: relative;
+        }
+
+        .goals-section p::before {
+            content: '•';
+            position: absolute;
+            right: 0;
+            color: var(--accent-color);
+            font-weight: bold;
         }
 
         .close-btn {
             display: block;
             text-align: center;
-            margin-top: 1.5rem;
+            margin: 2rem auto 0;
             color: white;
             background: var(--primary-color);
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
             cursor: pointer;
             font-weight: bold;
-            transition: all 0.3s;
+            transition: var(--transition);
+            width: fit-content;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .close-btn:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .close-btn i {
+            margin-left: 0.5rem;
         }
 
         /* الفوتر */
@@ -419,100 +624,153 @@
             background: linear-gradient(135deg, var(--footer-bg), #000);
             color: white;
             text-align: center;
-            padding: 1.2rem;
-            margin-top: 2rem;
-            transition: background 0.3s;
+            padding: 2rem 1.2rem;
+            margin-top: 3rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+            background-size: cover;
+            z-index: 1;
         }
 
         .footer-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
         }
 
         .contact-info-footer {
             background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 1rem;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
             max-width: 500px;
             backdrop-filter: blur(10px);
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .contact-info-footer:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .contact-info-footer h3 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            color: var(--accent-color);
         }
 
         .contact-info-footer p {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.05rem;
         }
 
         .contact-info-footer a {
-            color: var(--primary-color);
+            color: white;
             font-weight: bold;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: var(--transition);
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+            padding-bottom: 2px;
         }
 
         .contact-info-footer a:hover {
             color: var(--accent-color);
+            border-bottom-color: var(--accent-color);
         }
 
         .social-links-footer {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 2rem;
+            flex-wrap: wrap;
         }
 
         .social-links-footer a {
             color: white;
             text-decoration: none;
-            transition: opacity 0.3s;
+            transition: var(--transition);
             font-weight: bold;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .social-links-footer a:hover {
-            opacity: 0.8;
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
         }
 
         .social-icon-footer {
             width: 24px;
             height: 24px;
-            transition: transform 0.3s;
+            transition: var(--transition);
         }
 
         .social-links-footer a:hover .social-icon-footer {
             transform: scale(1.2);
         }
 
+        .copyright {
+            position: relative;
+            z-index: 2;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+        }
+
         /* زر العودة للأعلى */
         .back-to-top {
             display: none;
             position: fixed;
-            bottom: 20px;
-            left: 20px;
+            bottom: 30px;
+            left: 30px;
             z-index: 99;
             border: none;
             outline: none;
             background: var(--primary-color);
             color: white;
             cursor: pointer;
-            padding: 10px;
+            padding: 12px;
             border-radius: 50%;
-            font-size: 18px;
-            transition: all 0.3s;
+            font-size: 20px;
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .back-to-top:hover {
-            background: var(--secondary-color);
-            transform: scale(1.1);
+            background: var(--primary-dark);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         /* شريط التقدم */
         .progress-container {
             width: 100%;
             height: 4px;
-            background: var(--light-bg);
+            background: transparent;
             position: fixed;
             top: 0;
             z-index: 1001;
@@ -520,9 +778,10 @@
 
         .progress-bar {
             height: 4px;
-            background: var(--primary-color);
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
             width: 0%;
             transition: width 0.1s;
+            border-radius: 2px;
         }
 
         /* تأثيرات الحركة */
@@ -536,10 +795,21 @@
             50% { transform: scale(1.05); }
         }
 
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
         /* تحسينات للجوال */
         @media (max-width: 768px) {
             .logo {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
             .slogan {
@@ -554,12 +824,12 @@
             }
 
             nav ul {
-                flex-direction: column;
-                align-items: center;
+                gap: 0.3rem;
             }
 
-            nav ul li {
-                margin: 0.3rem 0;
+            nav ul li a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
             }
 
             .main-content {
@@ -567,12 +837,29 @@
             }
 
             .section {
-                padding: 1rem;
+                padding: 1.2rem;
                 margin-bottom: 1.2rem;
             }
 
             .section h2 {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
+            }
+
+            .section p {
+                font-size: 1rem;
+            }
+
+            .stats-section {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .stat-card {
+                padding: 1.2rem;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
             }
 
             .video-card {
@@ -580,38 +867,48 @@
             }
 
             .video-title {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
 
             .video-desc {
-                font-size: 0.9rem;
+                font-size: 0.95rem;
             }
 
             .goals-section {
                 margin: 1rem;
-                padding: 1.2rem;
+                padding: 1.5rem;
             }
 
             .goals-section h2 {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
             }
 
             .goals-section h3 {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
 
             .founders-list {
-                gap: 0.5rem;
+                gap: 0.8rem;
             }
 
             .founder-item {
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
+                padding: 0.8rem 1rem;
+                font-size: 1rem;
+                width: 100%;
+                justify-content: center;
             }
 
             .close-btn {
-                padding: 0.5rem 0.8rem;
-                font-size: 0.9rem;
+                padding: 0.7rem 1.2rem;
+                font-size: 0.95rem;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                left: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
             }
         }
 
@@ -625,18 +922,26 @@
             }
 
             .section h2 {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
+            }
+
+            .section p {
+                font-size: 0.95rem;
             }
 
             .founder-item {
-                font-size: 0.8rem;
-                width: 100%;
-                text-align: center;
+                font-size: 0.9rem;
             }
 
             .social-links-footer {
                 flex-direction: column;
                 gap: 0.8rem;
+                width: 100%;
+            }
+
+            .social-links-footer a {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -646,12 +951,14 @@
         <div class="progress-bar" id="progressBar"></div>
     </div>
 
-    <button class="back-to-top" onclick="topFunction()" title="العودة للأعلى">↑</button>
+    <button class="back-to-top" onclick="topFunction()" title="العودة للأعلى">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <header class="header">
         <button id="darkModeToggle" class="dark-mode-toggle" aria-label="تبديل الوضع الليلي">
-            <span class="moon">🌙</span>
-            <span class="sun">☀️</span>
+            <span class="moon"><i class="fas fa-moon"></i></span>
+            <span class="sun"><i class="fas fa-sun"></i></span>
         </button>
         <div>
             <div class="logo">إسناد</div>
@@ -660,19 +967,26 @@
     </header>
 
     <div class="news-ticker">
-        <div class="ticker-content">
-            <span>❤️مبادرة إسناد بدأت رحلتها — نحو العطاء، الوعي، والدعم المجتمعي</span>
+        <div class="ticker-container">
+            <div class="ticker-content">
+                <span><i class="fas fa-rocket"></i> انتظرونا قريباً مع إطلاق مبادرة إسناد</span>
+                <span><i class="fas fa-heart"></i> لأن الجميع يستحق من يسنده</span>
+                <span><i class="fas fa-star"></i> شباب يبني مستقبلاً أفضل</span>
+                <span><i class="fas fa-users"></i> انضم إلى فريق المتطوعين لدينا</span>
+                <span><i class="fas fa-lightbulb"></i> أفكار إبداعية لخدمة المجتمع</span>
+            </div>
         </div>
     </div>
 
     <nav>
         <div class="nav-container">
             <ul>
-                <li><a href="#" onclick="showSection('mainContent')" aria-label="الرئيسية">الرئيسية</a></li>
-                <li><a href="#about" aria-label="عن المبادرة">عن المبادرة</a></li>
-                <li><a href="#" onclick="showSection('goalsSection')" aria-label="المحاور والأهداف">المحاور والأهداف</a></li>
-                <li><a href="#videos" aria-label="فيديوهات">فيديوهات</a></li>
-                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSc2BTvP9sXEWPHO4NjbPL7VPKc-pC3m8e4vJetTidph0vl2mA/viewform?usp=dialog" target="_blank" aria-label="للتطوع">للتطوع</a></li>
+                <li><a href="#" onclick="showSection('mainContent')" class="active" aria-label="الرئيسية"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li><a href="#about" aria-label="عن المبادرة"><i class="fas fa-info-circle"></i> عن المبادرة</a></li>
+                <li><a href="#" onclick="showSection('goalsSection')" aria-label="المحاور والأهداف"><i class="fas fa-bullseye"></i> المحاور والأهداف</a></li>
+                <li><a href="#videos" aria-label="فيديوهات"><i class="fas fa-video"></i> فيديوهات</a></li>
+                <li><a href="#stats" aria-label="الإحصائيات"><i class="fas fa-chart-line"></i> الإحصائيات</a></li>
+                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSc2BTvP9sXEWPHO4NjbPL7VPKc-pC3m8e4vJetTidph0vl2mA/viewform?usp=dialog" target="_blank" aria-label="للتطوع"><i class="fas fa-hands-helping"></i> للتطوع</a></li>
             </ul>
         </div>
     </nav>
@@ -681,6 +995,46 @@
         <section id="about" class="section">
             <h2>عن المبادرة</h2>
             <p>مبادرة "إسناد" هي منصة شبابية تسعى إلى تمكين الأفراد من خلال تعليمهم وتطوير مهاراتهم، حيث تركز على تقديم فرص تعليمية متميزة ونشر ثقافة العطاء من خلال العمل الخيري. انطلاقًا من رؤية سمو ولي العهد في دعم الشباب والتعليم، تهدف "إسناد" إلى بناء جيل واعٍ ومؤهل قادر على تحمل المسؤولية والمساهمة الفعالة في تحسين المجتمع. نعمل على تقديم برامج تدريبية وأكاديمية تتيح للشباب فرصة التعلم والنمو، مما يساعد في تحقيق التنمية المستدامة والمشاركة الفعالة في القضايا المجتمعية</p>
+            <p>تأسست مبادرة إسناد في عام 2023 بمجموعة من الشباب الطموح الذين يؤمنون بقدرة الشباب على إحداث التغيير الإيجابي في المجتمع. نحن نؤمن أن التعليم والعمل الخيري هما الركيزتان الأساسيتان لبناء مجتمع متكامل ومتطور.</p>
+        </section>
+
+        <section id="stats" class="section">
+            <h2>إحصائيات المبادرة</h2>
+            <p>إليكم أحدث الإحصائيات التي تعكس تأثير مبادرة إسناد في المجتمع</p>
+            
+            <div class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number" id="volunteersCount">0</div>
+                    <div class="stat-label">متطوع</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="stat-number" id="beneficiariesCount">0</div>
+                    <div class="stat-label">مستفيد</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stat-number" id="visitorsCount">0</div>
+                    <div class="stat-label">زائر للموقع</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">مشروع وفعالية</div>
+                </div>
+            </div>
         </section>
 
         <section id="videos" class="section videos-section">
@@ -698,7 +1052,7 @@
                     </div>
                     <div class="video-info">
                         <div class="video-title">الفيديو التعريفي لمبادرة إسناد</div>
-                        <div class="video-desc">شاهد أهم أنشطة وفعاليات المبادرة</div>
+                        <div class="video-desc">شاهد أهم أنشطة وفعاليات المبادرة التي تقوم بها لخدمة المجتمع وتنمية الشباب</div>
                     </div>
                 </div>
             </div>
@@ -706,173 +1060,310 @@
 
         <section class="founders-section">
             <h2>المؤسسون</h2>
+            <p>هؤلاء هم الشباب المبدعون الذين أسسوا مبادرة إسناد</p>
             <ul class="founders-list">
-                <li class="founder-item">محمد ملكاوي</li>
-                <li class="founder-item">يوسف بدوان</li>
-                <li class="founder-item">رغد بني مصطفى</li>
-                <li class="founder-item">لجين سلام</li>
-            </ul>
-        </section>
-    </div>
-
-    <div class="goals-section" id="goalsSection">
-        <h2>المحاور والأهداف</h2>
-
-        <h3>الهدف الشبابي:</h3>
-        <p>تمكين الشباب من خلال توفير فرص تعليمية وتدريبية تساعدهم في تطوير مهاراتهم الشخصية والمهنية.</p>
-        <p>تشجيع الشباب على المشاركة الفعالة في المبادرات المجتمعية التي تهدف إلى إحداث تغيير إيجابي في المجتمع.</p>
-
-        <h3>الهدف التعليمي:</h3>
-        <p>تقديم برامج تعليمية شاملة ومتخصصة تهدف إلى تعزيز الوعي والتعليم بين الشباب.</p>
-        <p>دعم التعليم في مختلف المجالات، سواء الأكاديمية أو المهنية، لتعزيز قدرة الشباب على قيادة التغيير.</p>
-        <p>تعزيز التعاون مع مبادرة سمو ولي العهد في مجالات التعليم والتطوير، والعمل على تحقيق رؤية سموه في تحسين مستوى التعليم وتطوير مهارات الشباب.</p>
-
-        <h3>الهدف الخيري:</h3>
-        <p>تقديم الدعم للمجتمعات والفئات الأكثر احتياجًا من خلال تنظيم حملات إغاثية وبرامج خيرية تهدف إلى تحسين ظروف الحياة.</p>
-        <p>تنظيم فعاليات خيرية وابتكار حلول مجتمعية لدعم الأسر الفقيرة، الأيتام، وكبار السن، مما يعزز من ثقافة التضامن والعمل الجماعي.</p>
-        <button class="close-btn" onclick="showSection('mainContent')">إغلاق</button>
-    </div>
-
-    <footer>
-        <div class="footer-content">
-            <div class="contact-info-footer">
-                <h3>معلومات التواصل</h3>
-                <p>هاتف: <a href="tel:+962770495848">0770495848</a></p>
-                <p>بريد إلكتروني: <a href="mailto:esnaadteamjo@gmail.com">esnaadteamjo@gmail.com</a></p>
-            </div>
-
-            <div class="social-links-footer">
-                <a href="https://www.tiktok.com/@esnaadteam" target="_blank" aria-label="تيك توك - صفحة مبادرة إسناد">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" class="social-icon-footer">
-                    تيك توك
-                </a>
-                <a href="https://www.instagram.com/esnaad_team" target="_blank" aria-label="إنستجرام - صفحة مبادرة إسناد">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" class="social-icon-footer">
-                    إنستجرام
-                </a>
-            </div>
+                <li class="founder-item">
+                    <i class="fas fa-user-tie founder-icon"></i>
+                    محمد ملكاوي
+                </li>
+                <li class="founder-item">
+                    <i class="fas fa-user-tie founder-icon"></i>
+                    يوسف بدوان
+                </li>
+                <li class="founder-item">
+                    <i class="fas fa-user-tie founder-icon"></i>
+                    رغد بني مصطفى
+                </li>
+                    <li class="founder-item">
+                        <i class="fas fa-user-tie founder-icon"></i>
+                        لجين سلام
+                    </li>
+                </ul>
+            </section>
         </div>
-        <p>© 2025 مبادرة إسناد | جميع الحقوق محفوظة</p>
-    </footer>
-
-    <script>
-        // نظام الدارك مود
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
-
-        // تحقق من التفضيل المحفوظ
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            body.classList.add('dark-mode');
-        }
-
-        // تبديل الوضع
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
+    
+        <div class="goals-section" id="goalsSection">
+            <h2>المحاور والأهداف</h2>
+    
+            <h3>الهدف الشبابي:</h3>
+            <p>تمكين الشباب من خلال توفير فرص تعليمية وتدريبية تساعدهم في تطوير مهاراتهم الشخصية والمهنية.</p>
+            <p>تشجيع الشباب على المشاركة الفعالة في المبادرات المجتمعية التي تهدف إلى إحداث تغيير إيجابي في المجتمع.</p>
+            <p>بناء قدرات الشباب في مجالات القيادة والعمل التطوعي وريادة الأعمال.</p>
+    
+            <h3>الهدف التعليمي:</h3>
+            <p>تقديم برامج تعليمية شاملة ومتخصصة تهدف إلى تعزيز الوعي والتعليم بين الشباب.</p>
+            <p>دعم التعليم في مختلف المجالات، سواء الأكاديمية أو المهنية، لتعزيز قدرة الشباب على قيادة التغيير.</p>
+            <p>تعزيز التعاون مع مبادرة سمو ولي العهد في مجالات التعليم والتطوير، والعمل على تحقيق رؤية سموه في تحسين مستوى التعليم وتطوير مهارات الشباب.</p>
+    
+            <h3>الهدف الخيري:</h3>
+            <p>تقديم الدعم للمجتمعات والفئات الأكثر احتياجًا من خلال تنظيم حملات إغاثية وبرامج خيرية تهدف إلى تحسين ظروف الحياة.</p>
+            <p>تنظيم فعاليات خيرية وابتكار حلول مجتمعية لدعم الأسر الفقيرة، الأيتام، وكبار السن، مما يعزز من ثقافة التضامن والعمل الجماعي.</p>
+            <p>تعزيز ثقافة التطوع والعطاء بين الشباب من خلال برامج ومبادرات مستدامة.</p>
+    
+            <button class="close-btn" onclick="showSection('mainContent')">
+                <i class="fas fa-times"></i> إغلاق
+            </button>
+        </div>
+    
+        <footer>
+            <div class="footer-content">
+                <div class="contact-info-footer">
+                    <h3>معلومات التواصل</h3>
+                    <p><i class="fas fa-phone"></i> هاتف: <a href="tel:+962770495848">0770495848</a></p>
+                    <p><i class="fas fa-envelope"></i> بريد إلكتروني: <a href="mailto:esnaadteamjo@gmail.com">esnaadteamjo@gmail.com</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> المقر الرئيسي: الأردن</p>
+                </div>
+    
+                <div class="social-links-footer">
+                    <a href="https://www.tiktok.com/@esnaadteam" target="_blank" aria-label="تيك توك - صفحة مبادرة إسناد">
+                        <i class="fab fa-tiktok social-icon-footer"></i>
+                        تيك توك
+                    </a>
+                    <a href="https://www.instagram.com/esnaad_team" target="_blank" aria-label="إنستجرام - صفحة مبادرة إسناد">
+                        <i class="fab fa-instagram social-icon-footer"></i>
+                        إنستجرام
+                     </a>
+                </div>
+            </div>
+            <p class="copyright">© 2025 مبادرة إسناد | جميع الحقوق محفوظة</p>
+        </footer>
+    
+        <script>
+            // نظام الدارك مود
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const navLinks = document.querySelectorAll('nav ul li a');
+    
+            // تحقق من تفضيلات المستخدم للنظام
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
             
-            // حفظ التفضيل
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                localStorage.setItem('darkMode', 'disabled');
+            // تحقق من التفضيل المحفوظ
+            if (localStorage.getItem('darkMode') === 'enabled' || 
+                (localStorage.getItem('darkMode') === null && prefersDarkScheme.matches)) {
+                body.classList.add('dark-mode');
             }
-        });
-
-        // التبديل بين الأقسام
-        function showSection(sectionId) {
-            document.getElementById('mainContent').style.display = 'none';
-            document.getElementById('goalsSection').style.display = 'none';
-            document.getElementById(sectionId).style.display = 'block';
-            window.scrollTo({top: 0, behavior: 'smooth'});
-            return false;
-        }
-
-        // زر العودة للأعلى
-        window.onscroll = function() {
-            scrollFunction();
-            updateProgressBar();
-        };
-
-        function scrollFunction() {
-            const backToTopBtn = document.querySelector('.back-to-top');
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                backToTopBtn.style.display = 'block';
-            } else {
-                backToTopBtn.style.display = 'none';
-            }
-        }
-
-        function topFunction() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
-
-        // شريط التقدم
-        function updateProgressBar() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById("progressBar").style.width = scrolled + "%";
-        }
-
-        // تأثيرات الظهور
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.section, .founders-section, .goals-section');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
+    
+            // تبديل الوضع
+            darkModeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
                 
-                if (elementPosition < screenPosition) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
+                // حفظ التفضيل
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    localStorage.setItem('darkMode', 'disabled');
                 }
             });
-        }
-
-        // تهيئة العناصر
-        window.addEventListener('load', function() {
-            const elements = document.querySelectorAll('.section, .founders-section, .goals-section');
-            elements.forEach(element => {
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(20px)';
-                element.style.transition = 'all 0.6s ease';
-            });
-            
-            setTimeout(() => {
-                window.addEventListener('scroll', animateOnScroll);
-                animateOnScroll();
-            }, 500);
-        });
-
-        // شريط الأخبار المتحرك
-        document.addEventListener('DOMContentLoaded', function() {
-            const tickerContent = document.querySelector('.ticker-content');
-            const originalContent = tickerContent.innerHTML;
-            tickerContent.innerHTML += originalContent;
-        });
-
-        // تأثير اهتزاز عند النقر على الأزرار
-        document.querySelectorAll('button, a').forEach(button => {
-            button.addEventListener('click', function() {
-                this.style.animation = 'bounce 0.3s';
-                setTimeout(() => {
-                    this.style.animation = '';
-                }, 300);
-            });
-        });
-
-        // تحسين تجربة الفيديو للجوال
-        function adjustVideoSize() {
-            const videoWrapper = document.querySelector('.video-wrapper');
-            if (window.innerWidth < 768) {
-                videoWrapper.style.paddingBottom = '75%';
-            } else {
-                videoWrapper.style.paddingBottom = '56.25%';
+    
+            // التبديل بين الأقسام
+            function showSection(sectionId) {
+                document.getElementById('mainContent').style.display = 'none';
+                document.getElementById('goalsSection').style.display = 'none';
+                document.getElementById(sectionId).style.display = 'block';
+                
+                // تحديث الروابط النشطة في القائمة
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('onclick') === `showSection('${sectionId}')`) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                window.scrollTo({top: 0, behavior: 'smooth'});
+                return false;
             }
-        }
-        
-        window.addEventListener('resize', adjustVideoSize);
-        adjustVideoSize();
-    </script>
-</body>
-</html>
+    
+            // زر العودة للأعلى
+            window.onscroll = function() {
+                scrollFunction();
+                updateProgressBar();
+            };
+    
+            function scrollFunction() {
+                const backToTopBtn = document.querySelector('.back-to-top');
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    backToTopBtn.style.display = 'flex';
+                } else {
+                    backToTopBtn.style.display = 'none';
+                }
+            }
+    
+            function topFunction() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+    
+            // شريط التقدم
+            function updateProgressBar() {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById("progressBar").style.width = scrolled + "%";
+            }
+    
+            // تأثيرات الظهور
+            function animateOnScroll() {
+                const elements = document.querySelectorAll('.section, .founders-section, .goals-section');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+    
+            // تهيئة العناصر
+            window.addEventListener('load', function() {
+                const elements = document.querySelectorAll('.section, .founders-section, .goals-section');
+                elements.forEach(element => {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(20px)';
+                    element.style.transition = 'all 0.6s ease';
+                });
+                
+                setTimeout(() => {
+                    window.addEventListener('scroll', animateOnScroll);
+                    animateOnScroll();
+                }, 500);
+            });
+    
+            // شريط الأخبار المتحرك
+            document.addEventListener('DOMContentLoaded', function() {
+                const tickerContent = document.querySelector('.ticker-content');
+                const originalContent = tickerContent.innerHTML;
+                tickerContent.innerHTML += originalContent;
+            });
+    
+            // تأثير اهتزاز عند النقر على الأزرار
+            document.querySelectorAll('button, a[onclick]').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.animation = 'bounce 0.3s';
+                    setTimeout(() => {
+                        this.style.animation = '';
+                    }, 300);
+                });
+            });
+    
+            // تحسين تجربة الفيديو للجوال
+            function adjustVideoSize() {
+                const videoWrapper = document.querySelector('.video-wrapper');
+                if (window.innerWidth < 768) {
+                    videoWrapper.style.paddingBottom = '75%';
+                } else {
+                    videoWrapper.style.paddingBottom = '56.25%';
+                }
+            }
+            
+            window.addEventListener('resize', adjustVideoSize);
+            adjustVideoSize();
+    
+            // عداد الإحصائيات
+            function animateCounter(element, target, duration = 2000) {
+                const start = 0;
+                const increment = target / (duration / 16);
+                let current = start;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        clearInterval(timer);
+                        current = target;
+                    }
+                    element.textContent = Math.floor(current).toLocaleString();
+                }, 16);
+            }
+    
+            // إحصائيات المتطوعين والمستفيدين والزوار
+            let statsInitialized = false;
+            
+            function initStats() {
+                if (!statsInitialized) {
+                    // أرقام افتراضية (يمكن استبدالها ببيانات حقيقية من قاعدة البيانات)
+                    const volunteersTarget = 120;
+                    const beneficiariesTarget = 540;
+                    
+                    animateCounter(document.getElementById('volunteersCount'), volunteersTarget);
+                    animateCounter(document.getElementById('beneficiariesCount'), beneficiariesTarget);
+                    
+                    statsInitialized = true;
+                }
+            }
+    
+            // متعقب الزوار
+            let visitorCount = localStorage.getItem('visitorCount') || 0;
+            let visitStartTime = Date.now();
+            let visitorCounted = false;
+    
+            function countVisitor() {
+                if (!visitorCounted) {
+                    visitorCount++;
+                    localStorage.setItem('visitorCount', visitorCount);
+                    document.getElementById('visitorsCount').textContent = visitorCount;
+                    visitorCounted = true;
+                }
+            }
+    
+            // تحقق من الزائر كل 30 ثانية
+            setInterval(() => {
+                const timeSpent = Date.now() - visitStartTime;
+                if (timeSpent > 30000 && !visitorCounted) {
+                    countVisitor();
+                }
+            }, 5000);
+    
+            // عند تحميل الصفحة، تحقق إذا كان الزائر جديد
+            window.addEventListener('load', () => {
+                // إذا لم يكن هناك وقت زيار سابق أو انتهت الجلسة
+                if (!sessionStorage.getItem('visitStartTime')) {
+                    visitStartTime = Date.now();
+                    sessionStorage.setItem('visitStartTime', visitStartTime);
+                    countVisitor();
+                } else {
+                    visitStartTime = parseInt(sessionStorage.getItem('visitStartTime'));
+                }
+                
+                // عرض الإحصائيات بعد تأخير بسيط
+                setTimeout(() => {
+                    document.getElementById('visitorsCount').textContent = visitorCount;
+                    initStats();
+                }, 500);
+            });
+    
+            // عند مغادرة الصفحة
+            window.addEventListener('beforeunload', () => {
+                const timeSpent = Date.now() - visitStartTime;
+                if (timeSpent > 30000 && !visitorCounted) {
+                    countVisitor();
+                }
+            });
+    
+            // تفعيل القسم عند النقر على روابط الهاش
+            window.addEventListener('hashchange', function() {
+                const hash = window.location.hash.substring(1);
+                if (hash === 'stats') {
+                    initStats();
+                }
+            });
+    
+            // تفعيل الإحصائيات عند التمرير إليها
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.target.id === 'stats') {
+                        initStats();
+                    }
+                });
+            }, { threshold: 0.5 });
+    
+            const statsSection = document.getElementById('stats');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+        </script>
+    </body>
+    </html>
