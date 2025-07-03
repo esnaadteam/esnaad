@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>فريق إسناد | لأن الجميع يستحق من يسنده</title>
+  <meta name="description" content="فريق إسناد - منصة شبابية تهدف لتمكين الشباب عبر التعليم والعمل الخيري" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Tajawal', 'sans-serif'],
+          },
+          colors: {
+            primary: '#1d4ed8', // أزرق
+            secondary: '#F97316', // أصفر/برتقالي
+            border: '#cbd5e1',
+            darkBlue: '#221F26', // لون النايت مود الأزرق الداكن
+          },
+          keyframes: {
+            ticker: {
+              '0%': { transform: 'translateX(0)' },
+              '100%': { transform: 'translateX(-100%)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' }
+            }
+          },
+          animation: {
+            ticker: 'ticker 20s linear infinite',
+            float: 'float 5s ease-in-out infinite'
+          },
+        },
+      },
+      darkMode: 'class',
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .bg-gradient-text {
+      background-image: linear-gradient(to right, #1d4ed8, rgba(29, 78, 216, 0.7));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .dark {
+      color-scheme: dark;
+    }
+
+    .dark body {
+      background-color: #221F26;
+      color: #e5e7eb;
+    }
+
+    .dark .bg-white {
+      background-color: #1e1b21;
+    }
+
+    .dark .text-gray-700 {
+      color: #d1d5db;
+    }
+
+    .dark .text-gray-600 {
+      color: #9ca3af;
+    }
+
+    .dark .text-gray-800 {
+      color: #f3f4f6;
+    }
+
+    .dark .bg-gray-50 {
+      background-color: #221F26;
+    }
+
+    .dark .bg-gray-100 {
+      background-color: #1e1b21;
+    }
+
+    .dark .border-gray-200 {
+      border-color: #383142;
+    }
+
+    .dark .border-gray-700 {
+      border-color: #4b4458;
+    }
+
+    .dark .border-gray-800 {
+      border-color: #4b4458;
+    }
+
+    .animate-ticker {
+      animation: ticker 20s linear infinite;
+    }
+
+    .video-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .tab-btn.active {
+      background-color: #1d4ed8;
+      color: white;
+    }
+
+    .dark .tab-btn.active {
+      background-color: #0EA5E9;
+      color: white;
+    }
+
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      z-index: 9999;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(to right, #1d4ed8, #60a5fa);
+      width: 0%;
+    }
+
+    .dark .progress-bar {
+      background: linear-gradient(to right, #0EA5E9, #38bdf8);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50">
+  <!-- Progress Bar -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="relative">
+    <!-- Hero Banner -->
+    <div class="relative h-60 md:h-80 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/50 dark:from-blue-600/80 dark:to-blue-500/50">
+        <div class="absolute inset-0 bg-[url('https://raw.githubusercontent.com/lovable-gasket-486598/resources/main/images/pattern.svg')] opacity-20"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 h-full flex flex-col items-center justify-center relative z-10">
+        <img 
+          src="https://i.postimg.cc/Znp77N6P/bng.png" 
+          alt="فريق إسناد" 
+          class="w-32 h-32 md:w-40 md:h-40 object-contain transition-transform hover:scale-105 mb-2"
+        />
+        <h1 class="text-white text-lg md:text-2xl font-bold mb-3 text-center">
+          فريق إسناد
+        </h1>
+        <p class="text-white/90 text-sm md:text-base font-medium text-center max-w-md">
+          لأن الجميع يستحق من يسنده
+        </p>
+      </div>
+
+      <button 
+        id="darkModeToggle"
+        class="absolute top-4 left-4 md:top-6 md:left-6 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white rounded-full p-2 z-50"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon hidden"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+    </div>
+
+    <!-- Announcement Ticker -->
+    <div class="bg-secondary/10 py-2 border-y border-border/30 overflow-hidden dark:bg-blue-900/20 dark:border-blue-800/30">
+      <div class="animate-ticker whitespace-nowrap">
+        <div class="inline-block">
+
+          <span class="ml-8 inline-flex items-center gap-2 font-medium">
+            <span class="bg-primary text-white text-xs px-2 py-1 rounded dark:bg-blue-600">جديد</span>
+            انطلاق فريق إسناد للتعليم والتطوير
+          </span>
+
+          <span class="ml-8 inline-flex items-center gap-2 font-medium">
+            <span class="bg-primary text-white text-xs px-2 py-1 rounded dark:bg-blue-600">فعالية</span>
+            قريباً: ESNAAD IT JADARA UNV
+          </span>
+
+          <span class="ml-8 inline-flex items-center gap-2 font-medium">
+            <span class="bg-primary text-white text-xs px-2 py-1 rounded dark:bg-blue-600">إعلان</span>
+            فتح باب التطوع للمشاركة في مشاريع الفريق
+          </span>
+          <span class="ml-8 inline-flex items-center gap-2 font-medium">
+            <span class="bg-primary text-white text-xs px-2 py-1 rounded dark:bg-blue-600">إعلان</span>
+مسابقة حلها ! الاثنين 12/5
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="bg-white shadow-md sticky top-0 z-20 transition-colors dark:bg-darkBlue dark:shadow-blue-900/20">
+      <div class="container mx-auto px-4">
+        <nav class="flex justify-between items-center py-3 md:py-4">
+          <div class="block md:hidden">
+            <button 
+              id="mobileMenuToggle"
+              class="text-gray-800 p-2 dark:text-gray-200"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+          </div>
+
+          <div id="mobileMenu" class="hidden md:block absolute md:relative top-full left-0 right-0 bg-white md:bg-transparent dark:bg-darkBlue shadow-md md:shadow-none z-30 transition-all duration-300 md:transition-none">
+            <ul class="flex flex-col md:flex-row items-center md:justify-center gap-1 md:gap-2 py-3 md:py-0 px-4 md:px-0">
+              <li>
+                <a href="#home" class="block w-full md:w-auto px-4 py-2 text-center text-sm font-medium text-gray-700 hover:bg-gray-100 rounded dark:text-gray-300 dark:hover:bg-gray-800">الرئيسية</a>
+              </li>
+              <li>
+                <a href="#about" class="block w-full md:w-auto px-4 py-2 text-center text-sm font-medium text-gray-700 hover:bg-gray-100 rounded dark:text-gray-300 dark:hover:bg-gray-800">عن الفريق</a>
+              </li>
+              <li>
+                <a href="#goals" class="block w-full md:w-auto px-4 py-2 text-center text-sm font-medium text-gray-700 hover:bg-gray-100 rounded dark:text-gray-300 dark:hover:bg-gray-800">المحاور والأهداف</a>
+              </li>
+              <li>
+                <a href="#videos" class="block w-full md:w-auto px-4 py-2 text-center text-sm font-medium text-gray-700 hover:bg-gray-100 rounded dark:text-gray-300 dark:hover:bg-gray-800">الفيديوهات</a>
+              </li>
+              <li>
+                <a href="#contact" class="block w-full md:w-auto px-4 py-2 text-center text-sm font-medium text-gray-700 hover:bg-gray-100 rounded dark:text-gray-300 dark:hover:bg-gray-800">تواصل معنا</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="hidden md:block">
+            <a 
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdtvLb8V83I55Ih7WGo90OYsxmowfqLtvzMoucaJIHiDOurhQ/viewform?usp=header" 
+              target="_blank"
+              class="inline-block px-4 py-2 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white rounded dark:from-blue-600 dark:to-blue-500/80 dark:hover:from-blue-600/90 dark:hover:to-blue-500/70"
+            >
+              للتطوع معنا
+            </a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="relative overflow-hidden bg-white py-16 md:py-24 dark:bg-darkBlue">
+      <div class="absolute inset-0 bg-gradient-to-br from-gray-50 to-transparent z-0 dark:from-darkBlue dark:to-darkBlue/50"></div>
+      <div class="absolute inset-0 bg-[url('https://raw.githubusercontent.com/lovable-gasket-486598/resources/main/images/dot-pattern.svg')] opacity-5 z-0"></div>
+      
+      <div class="container relative z-10 mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+            <div class="text-center md:text-right md:w-1/2 order-2 md:order-1">
+              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-text mb-6 dark:bg-gradient-to-r dark:from-blue-400 dark:to-blue-600 dark:bg-clip-text dark:text-transparent">
+                فريق إسناد
+              </h1>
+              <p class="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed dark:text-gray-300">
+                منصة شبابية تهدف إلى تمكين الشباب من خلال توفير فرص تعليمية متميزة ونشر ثقافة العطاء في المجتمع
+              </p>
+              <div class="flex flex-wrap items-center justify-center md:justify-end gap-4">
+                <a href="#about" class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded dark:bg-blue-600 dark:hover:bg-blue-600/90">
+                  تعرف علينا
+                  <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+                </a>
+                <button 
+                  id="mainVideoButton"
+                  class="inline-flex items-center px-6 py-3 border border-primary text-primary hover:bg-primary/10 rounded dark:border-blue-500 dark:text-blue-500 dark:hover:bg-blue-900/30"
+                >
+                  <svg class="ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                  شاهد الفيديو
+                </button>
+              </div>
+            </div>
+            
+            <div class="w-full md:w-1/2 order-1 md:order-2">
+              <div class="relative">
+                <div class="absolute -inset-1 bg-gradient-to-r from-primary to-primary/70 rounded-lg blur-lg opacity-30 animate-pulse dark:from-blue-600 dark:to-blue-500/70"></div>
+                <div class="relative overflow-hidden rounded-lg shadow-xl">
+                  <img 
+                    src="https://i.postimg.cc/Znp77N6P/bng.png"
+                    alt="فريق إسناد" 
+                    class="w-full h-full object-cover aspect-[4/3]"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div class="absolute bottom-0 right-0 p-4 md:p-6">
+                    <p class="text-white text-lg md:text-xl font-bold">رؤيتنا</p>
+                    <p class="text-white/80 text-sm md:text-base">بناء جيل واعٍ قادر على تحمل المسؤولية</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50 dark:bg-darkBlue/90">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <span class="inline-block text-primary border border-primary rounded-full px-3 py-1 text-sm mb-4 dark:text-blue-400 dark:border-blue-400">عن الفريق</span>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-text dark:bg-gradient-to-r dark:from-blue-400 dark:to-blue-600 dark:bg-clip-text dark:text-transparent">
+            تعرف على فريق إسناد
+          </h2>
+          <p class="text-gray-700 text-lg leading-relaxed dark:text-gray-300">
+            فريق "إسناد" هي منصة شبابية تسعى إلى تمكين الأفراد من خلال تعليمهم وتطوير مهاراتهم،
+            حيث تركز على تقديم فرص تعليمية متميزة ونشر ثقافة العطاء من خلال العمل الخيري.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+          <div class="bg-white border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 rounded-lg p-6 dark:bg-darkBlue/70 dark:border-blue-900/50 dark:shadow-blue-900/10">
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 dark:bg-blue-600/20">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary dark:text-blue-400"><path d="M7 17.77c0-4.98 5-6.77 5-12.77 0 6 5 7.77 5 12.77s-2.24 5.23-5 5.23-5-.24-5-5.23z"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold text-right dark:text-white">رؤيتنا</h3>
+            <p class="text-gray-600 text-right text-sm mb-4 dark:text-gray-400">
+              نسعى لبناء جيل واعٍ
+            </p>
+            <p class="text-gray-700 text-right dark:text-gray-300">
+              أن تصبح الفريق مركزًا رياديًا على مستوى الجامعة في تطوير مهارات تكنولوجيا المعلومات. تهدف الفريق إلى رفع المستوى الأكاديمي والعملي للطلاب المشاركين بشكل ملحوظ، من خلال توفير أساسيات قوية تساعدهم على التميز في دراستهم ومشاريعهم التقنية.
+            </p>
+          </div>
+
+          <div class="bg-white border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 rounded-lg p-6 dark:bg-darkBlue/70 dark:border-blue-900/50 dark:shadow-blue-900/10">
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 dark:bg-blue-600/20">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary dark:text-blue-400"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="16"></line><line x1="8" x2="16" y1="12" y2="12"></line></svg>
+            </div>
+            <h3 class="text-xl font-bold text-right dark:text-white">مهمتنا</h3>
+            <p class="text-gray-600 text-right text-sm mb-4 dark:text-gray-400">
+              خدمة المجتمع والارتقاء به
+            </p>
+            <p class="text-gray-700 text-right dark:text-gray-300">
+              مهمة فريق إسناد هي تعزيز بيئة تعليمية تفاعلية تدعم الطلاب في تطوير مهاراتهم الأكاديمية والتقنية. نهدف من خلال هذه الفريق إلى توفير محتوى أكاديمي مبسط ومتاح لجميع الطلاب، مع التركيز على رفع مستوى الفهم والتطبيق العملي للمفاهيم التقنية.
+            </p>
+          </div>
+
+          <div class="bg-white border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 rounded-lg p-6 dark:bg-darkBlue/70 dark:border-blue-900/50 dark:shadow-blue-900/10">
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 dark:bg-blue-600/20">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary dark:text-blue-400"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <h3 class="text-xl font-bold text-right dark:text-white">قيمنا</h3>
+            <p class="text-gray-600 text-right text-sm mb-4 dark:text-gray-400">
+              التعاون، الابتكار، الالتزام
+            </p>
+            <p class="text-gray-700 text-right dark:text-gray-300">
+              في فريق إسناد، نؤمن أن النجاح لا يتحقق إلا من خلال مجموعة من القيم التي تشكل الأساس الذي نبني عليه كل ما نقوم به    
+                    </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Goals Section -->
+    <section id="goals" class="py-16 bg-gray-50 dark:bg-darkBlue/80">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-text dark:bg-gradient-to-r dark:from-blue-400 dark:to-blue-600 dark:bg-clip-text dark:text-transparent">
+            المحاور والأهداف
+          </h2>
+          <p class="text-gray-700 leading-relaxed dark:text-gray-300">
+            تعمل فريق إسناد على تحقيق مجموعة من الأهداف التي تنقسم إلى ثلاثة محاور أساسية:
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto mt-8">
+          <div class="tabs">
+            <div class="grid grid-cols-3 mb-8 border rounded-md bg-gray-100 overflow-hidden dark:bg-darkBlue/50 dark:border-blue-900/30">
+              <button class="tab-btn py-3 px-4 flex items-center justify-center gap-2 active" data-tab="youth">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600 dark:text-blue-400"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                الهدف الشبابي
+              </button>
+              <button class="tab-btn py-3 px-4 flex items-center justify-center gap-2" data-tab="educational">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-600 dark:text-emerald-400"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                الهدف التعليمي
+              </button>
+              <button class="tab-btn py-3 px-4 flex items-center justify-center gap-2" data-tab="charity">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-rose-600 dark:text-rose-400"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+                الهدف الخيري
+              </button>
+            </div>
+            
+            <!-- Tab contents -->
+            <div class="tab-content active" id="youth-content">
+              <div class="border rounded-lg p-6 bg-white shadow dark:bg-darkBlue/70 dark:border-blue-900/30">
+                <div class="flex justify-between items-center">
+                  <h3 class="text-2xl font-bold text-right dark:text-white">الهدف الشبابي</h3>
+                  <div class="p-2 rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  </div>
+                </div>
+                <p class="text-right text-gray-600 mb-4 dark:text-gray-400">أهداف الشبابي التي تسعى الفريق لتحقيقها</p>
+                <ul class="space-y-4">
+                  <li class="flex gap-3 items-start">
+                    <span class="inline-flex items-center justify-center rounded-full bg-primary/10 text-primary p-1 mt-1 dark:bg-blue-900/50 dark:text-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    <span class="text-gray-700 text-right dark:text-gray-300">تعزيز المهارات التقنية: تطوير مهارات الشباب في مجالات البرمجة، التصميم، والأمن السيبراني لتحسين فرصهم في سوق العمل.</span>
+                  </li>
+                  <li class="flex gap-3 items-start">
+                    <span class="inline-flex items-center justify-center rounded-full bg-primary/10 text-primary p-1 mt-1 dark:bg-blue-900/50 dark:text-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    <span class="text-gray-700 text-right dark:text-gray-300">تشجيع الشباب على المشاركة الفعالة في المبادرات المجتمعية التي تهدف إلى إحداث تغيير إيجابي في المجتمع.</span>
+                  </li>
+                  <li class="flex gap-3 items-start">
+                    <span class="inline-flex items-center justify-center rounded-full bg-primary/10 text-primary p-1 mt-1 dark:bg-blue-900/50 dark:text-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    <span class="text-gray-700 text-right dark:text-gray-300">بناء قدرات الشباب في مجالات القيادة والعمل التطوعي وريادة الأعمال.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="tab-content hidden" id="educational-content">
+              <div class="border rounded-lg p-6 bg-white shadow dark:bg-darkBlue/70 dark:border-blue-900/30">
+                <div class="flex justify-between items-center">
+                  <h3 class="text-2xl font-bold text-right dark:text-white">الهدف التعليمي</h3>
+                  <div class="p-2 rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-900/50 dark:text-emerald-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-600 dark:text-emerald-400"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                  </div>
+                </div>
+                <p class="text-right text-gray-600 mb-4 dark:text-gray-400">أهداف التعليمي التي تسعى الفريق لتحقيقها</p>
+                <ul class="space-y-4">
+                  <li class="flex gap-3 items-start">
+                    <span class="inline-flex items-center justify-center rounded-full bg-primary/10 text-primary p-1 mt-1 dark:bg-blue-900/50 dark:text-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    <span class="text-gray-700 text-right dark:text-gray-300">تقديم برامج تعليمية شاملة ومتخصصة تهدف إلى تعزيز الوعي والتعليم بين الشباب.</span>
+                  </li>
+                  <li class="flex gap-3 items-start">
+                    <span class="inline-flex items-center justify-center rounded-full bg-primary/10 text-primary p-1 mt-1 dark:bg-blue-900/50 dark:text-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    <span class="text-gray-700 text-right dark:text-gray-300">دعم التعليم في مختلف المجالات، سواء الأكاديمية أو المهنية، لتعزيز قدرة الشباب على قيادة التغيير.</span>
+                  </li>
+                  <li class="flex gap-3 items-start">
+                    <span class="inline-flex items-center justify-center rounded-full bg-primary/10 text-primary p-1 mt-1 dark:bg-blue-900/50 dark:text-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    <span class="text-gray-700 text-right dark:text-gray-300">العمل على تحقيق رؤية سمو ولي العهد في تحسين مستوى التعليم وتطوير مهارات الشباب.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="tab-content hidden" id="charity-content">
+              <div class="border rounded-lg p-6 bg-white shadow dark:bg-darkBlue/70 dark:border-blue-900/30">
+                <div class="flex justify-between items-center">
+                  <h3 class="text-2xl font-bold text-right dark:text-white">الهدف الخيري</h3>
+                  <div class="p-2 rounded-full bg-rose-100 text-rose-600 dark:bg-rose-900/50 dark:text-rose-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-rose-600 dark:text-rose-400"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+                  </div>
+                </div>
+                <p class="text-right text-gray-600 mb-4 dark:text-gray-400">أهداف الخيري التي تسعى الفريق لتحقيقها</p>
+                <ul class="space-y-4">
+                  <li class="flex gap-3 items-start">
+                    <span class="inline-flex items-center justify-center rounded-full bg-primary/10 text-primary p-1 mt-1 dark:bg-blue-900/50 dark:text-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    <span class="text-gray-700 text-right dark:text-gray-300">تقديم الدعم للمجتمعات والفئات الأكثر احتياجًا من خلال تنظيم حملات حيرية وبرامج خيرية تهدف إلى تحسين ظروف الحياة.</span>
+                  </li>
+                  <li class="flex gap-3 items-start">
+                    <span class="inline-flex items-center justify-center rounded-full bg-primary/10 text-primary p-1 mt-1 dark:bg-blue-900/50 dark:text-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    <span class="text-gray-700 text-right dark:text-gray-300">توفير الدعم الأكاديمي والتقني للطلاب المحتاجين، من خلال تقديم موارد تعليمية مجانية وورش عمل تهدف إلى تحسين فرص التعليم والنجاح الأكاديمي لجميع الطلاب.</span>
+                  </li>
+                  <li class="flex gap-3 items-start">
+                    <span class="inline-flex items-center justify-center rounded-full bg-primary/10 text-primary p-1 mt-1 dark:bg-blue-900/50 dark:text-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                    <span class="text-gray-700 text-right dark:text-gray-300">تعزيز ثقافة التطوع والعطاء بين الشباب من خلال برامج ومبادرات مستدامة.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section id="videos" class="py-16 bg-white dark:bg-darkBlue">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-text dark:bg-gradient-to-r dark:from-blue-400 dark:to-blue-600 dark:bg-clip-text dark:text-transparent">
+            مكتبة الفيديوهات
+          </h2>
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+            شاهد أهم الفيديوهات التي توضح أنشطة وفعاليات الفريق وتعرف على رسالتنا بشكل أفضل
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- فيديو 1 - يمكنك نسخ هذه البطاقة لتضيف فيديوهات جديدة -->
+          <div class="video-card border border-gray-200 dark:border-blue-900/30 overflow-hidden bg-white dark:bg-darkBlue/70 rounded-lg shadow">
+            <div class="relative">
+              <!-- رابط الصورة المصغرة للفيديو -->
+              <img 
+                src="https://i.postimg.cc/Jn9Y5xH4/Whats-App-Image-2025-04-24-at-18-42-48-cb05a0f9.jpg" 
+                alt="فيديو الفريق" 
+                class="w-full aspect-video object-cover"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-center justify-center">
+                <!-- رابط الفيديو من Google Drive -->
+                <button 
+                  class="video-btn rounded-full w-16 h-16 bg-white/20 hover:bg-white/30 backdrop-blur-sm border-2 border-white/50 flex items-center justify-center text-white transition-transform hover:scale-110"
+                  data-video-url="https://drive.google.com/file/d/1DsqcqjlFYlns85Cu0QElhM6M6tquPyB9/preview"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </button>
+              </div>
+            </div>
+            <div class="p-4">
+              <!-- عنوان الفيديو -->
+              <h3 class="text-lg font-bold mb-2 text-right dark:text-white">الفيديو التعريفي لفريق إسناد</h3>
+              <!-- وصف الفيديو -->
+              <p class="text-gray-600 text-sm text-right dark:text-gray-400">
+                تعرف على أهداف فريق إسناد ورسالتها في خدمة المجتمع وتمكين الشباب
+              </p>
+            </div>
+          </div>
+
+
+         <div class="video-card border border-gray-200 dark:border-blue-900/30 overflow-hidden bg-white dark:bg-darkBlue/70 rounded-lg shadow">
+            <div class="relative">
+              <img 
+                src=https://i.postimg.cc/Jn9Y5xH4/Whats-App-Image-2025-04-24-at-18-42-48-cb05a0f9.jpg" 
+                alt="حلها!" 
+                class="w-full aspect-video object-cover"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-center justify-center">
+                <button 
+                  class="video-btn rounded-full w-16 h-16 bg-white/20 hover:bg-white/30 backdrop-blur-sm border-2 border-white/50 flex items-center justify-center text-white transition-transform hover:scale-110"
+                  data-video-url="https://drive.google.com/file/d/1xyxz_rzosUMyEjfppmKzqeyN4KJiDkYdg/preview"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </button>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="text-lg font-bold mb-2 text-right dark:text-white">حلها !</h3>
+              <p class="text-gray-600 text-sm text-right dark:text-gray-400">
+مسابقة برمجة طلاب برمجة 1&2              </p>
+            </div>
+          </div>
+          <div class="video-card border border-gray-200 dark:border-blue-900/30 overflow-hidden bg-white dark:bg-darkBlue/70 rounded-lg shadow">
+  <div class="relative">
+    <img 
+      src="https://i.postimg.cc/yNc6v2r3/494334340-718424880861176-4542319127515760615-n.jpg" 
+      alt="حلها !" 
+      class="w-full aspect-video object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-center justify-center">
+      <button 
+        class="video-btn rounded-full w-16 h-16 bg-white/20 hover:bg-white/30 backdrop-blur-sm border-2 border-white/50 flex items-center justify-center text-white transition-transform hover:scale-110"
+        data-video-url="https://drive.google.com/file/d/1bamVnXS2jthtst_85Rjz9cngK677rtzO/preview"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      </button>
+    </div>
+  </div>
+  <div class="p-4">
+    <h3 class="text-lg font-bold mb-2 text-right dark:text-white">حلها ! </h3>
+    <p class="text-gray-600 text-sm text-right dark:text-gray-400">
+"حلها !" الفيديو الخاص بيوم المسابقة ومجرياتها   </p>
+  </div>
+</div>
+<!--
+<div class="video-card border border-gray-200 dark:border-blue-900/30 overflow-hidden bg-white dark:bg-darkBlue/70 rounded-lg shadow">
+  <div class="relative">
+    <img 
+      src="رابط_الصورة_المصغرة.jpg" 
+      alt="عنوان الفيديو" 
+      class="w-full aspect-video object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-center justify-center">
+      <button 
+        class="video-btn rounded-full w-16 h-16 bg-white/20 hover:bg-white/30 backdrop-blur-sm border-2 border-white/50 flex items-center justify-center text-white transition-transform hover:scale-110"
+        data-video-url="رابط_الفيديو_المضمن"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      </button>
+    </div>
+  </div>
+  <div class="p-4">
+    <h3 class="text-lg font-bold mb-2 text-right dark:text-white">عنوان الفيديو هنا</h3>
+    <p class="text-gray-600 text-sm text-right dark:text-gray-400">
+      وصف مختصر للفيديو يشرح محتواه
+    </p>
+  </div>
+</div>
+--> 
+
+    <!-- 
+            كيفية إضافة فيديو جديد:
+            1. انسخ كود ى بطاقات الفيديو أعلاه
+            2. الصقها قبل هذا التعليق أو بعده
+            3. عدل البيانات التالية:
+              - src الخاص بالصورة المصغرة (thumbnail)
+              - data-video-url برابط الفيديو من Google Drive أو YouTube أو Vimeo
+              - عنوان الفيديو داخل <h3>
+              - وصف الفيديو داخل <p>
+          -->
+
+        </div>
+      </div>
+      
+      <!-- نافذة عرض الفيديو -->
+      <div id="videoModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div class="absolute inset-0 bg-black/80" id="videoModalOverlay"></div>
+        <div class="relative bg-white dark:bg-darkBlue/90 rounded-lg w-full max-w-4xl">
+          <button id="closeVideoModal" class="absolute top-2 right-2 p-2 text-gray-500 hover:text-gray-800 z-10 dark:text-gray-300 dark:hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+          <div class="p-4">
+            <h3 id="videoModalTitle" class="text-xl font-bold mb-4 text-center dark:text-white">الفيديو التعريفي لفريق إسناد</h3>
+            <div class="relative w-full aspect-video">
+              <iframe 
+                id="videoIframe" 
+                src="" 
+                width="100%" 
+                height="100%" 
+                allow="autoplay; fullscreen" 
+                class="border-0 rounded"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="py-16 bg-white dark:bg-darkBlue/90">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-text dark:bg-gradient-to-r dark:from-blue-400 dark:to-blue-600 dark:bg-clip-text dark:text-transparent">
+            إحصائيات الفريق
+          </h2>
+          <p class="text-gray-700 leading-relaxed dark:text-gray-300">
+            نفخر بمساهمتنا في خدمة المجتمع من خلال أنشطتنا المختلفة. إليكم آخر إحصائياتنا:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div class="border border-gray-200 shadow-md overflow-hidden bg-white rounded-lg p-6 text-center dark:bg-darkBlue/70 dark:border-blue-900/30 dark:shadow-blue-900/10">
+            <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center bg-blue-500/10 text-blue-500 dark:bg-blue-900/30 dark:text-blue-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <div class="mb-2">
+              <span class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white count-up" data-target="7">0</span>
+            </div>
+            <p class="text-lg text-gray-600 dark:text-gray-400">متطوع</p>
+          </div>
+
+          <div class="border border-gray-200 shadow-md overflow-hidden bg-white rounded-lg p-6 text-center dark:bg-darkBlue/70 dark:border-blue-900/30 dark:shadow-blue-900/10">
+            <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center bg-emerald-500/10 text-emerald-500 dark:bg-emerald-900/30 dark:text-emerald-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.8 4.6a1 1 0 0 0-1.6 0L6 8.6a1 1 0 0 1-.5.3l-4.8.7a1 1 0 0 0-.5 1.7l3.5 3.4a1 1 0 0 1 .3.9l-.8 4.7a1 1 0 0 0 1.5 1l4.3-2.3a1 1 0 0 1 1 0l4.3 2.3a1 1 0 0 0 1.5-1l-.8-4.7a1 1 0 0 1 .3-.9l3.5-3.4a1 1 0 0 0-.5-1.7l-4.8-.7a1 1 0 0 1-.5-.3Z"></path></svg>
+            </div>
+            <div class="mb-2">
+              <span class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white count-up" data-target="10">0</span>
+            </div>
+            <p class="text-lg text-gray-600 dark:text-gray-400">مستفيد</p>
+          </div>
+
+          <div class="border border-gray-200 shadow-md overflow-hidden bg-white rounded-lg p-6 text-center dark:bg-darkBlue/70 dark:border-blue-900/30 dark:shadow-blue-900/10">
+            <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center bg-amber-500/10 text-amber-500 dark:bg-amber-900/30 dark:text-amber-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            </div>
+            <div class="mb-2">
+              <span class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white count-up" data-target="1">0</span>
+            </div>
+            <p class="text-lg text-gray-600 dark:text-gray-400">مشروع وفعالية</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founders Section -->
+    <section id="founders" class="py-16 bg-white dark:bg-darkBlue">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-text dark:bg-gradient-to-r dark:from-blue-400 dark:to-blue-600 dark:bg-clip-text dark:text-transparent">
+            المؤسسون
+          </h2>
+          <p class="text-gray-700 leading-relaxed dark:text-gray-300">
+            تأسست فريق إسناد على يد مجموعة من الشباب المبدعين الذين يؤمنون بأهمية العمل التطوعي والخيري في المجتمع
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          <div class="overflow-hidden bg-white border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 rounded-lg p-6 flex flex-col items-center text-center dark:bg-darkBlue/70 dark:border-blue-900/30 dark:shadow-blue-900/10">
+            <img src="https://i.postimg.cc/g2SDKsfF/OIP.jpg" alt="محمد ملكاوي" class="w-24 h-24 mb-4 border-4 border-primary/20 rounded-full dark:border-blue-900/50" />
+            <h3 class="text-xl font-bold text-gray-800 mb-1 dark:text-white">محمد ملكاوي</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">المؤسس</p>
+          </div>
+
+          <div class="overflow-hidden bg-white border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 rounded-lg p-6 flex flex-col items-center text-center dark:bg-darkBlue/70 dark:border-blue-900/30 dark:shadow-blue-900/10">
+            <img src="https://i.postimg.cc/g2SDKsfF/OIP.jpg" alt="يوسف بدوان" class="w-24 h-24 mb-4 border-4 border-primary/20 rounded-full dark:border-blue-900/50" />
+            <h3 class="text-xl font-bold text-gray-800 mb-1 dark:text-white">يوسف بدوان</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">المؤسس</p>
+          </div>
+        </div>
+      </div>
+    </section>
+       <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50 dark:bg-darkBlue/80">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto">
+          <h2 class="text-4xl font-bold text-center mb-8 bg-gradient-text dark:bg-gradient-to-r dark:from-blue-400 dark:to-blue-600 dark:bg-clip-text dark:text-transparent">
+            تواصل معنا
+          </h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-lg dark:bg-darkBlue/70 dark:shadow-blue-900/10">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary mb-4 dark:text-blue-400"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+              <h3 class="text-lg font-semibold mb-2 dark:text-white">البريد الإلكتروني</h3>
+              <a href="mailto:esnaadteamjo@gmail.com" class="text-gray-600 hover:text-primary transition-colors duration-200 dark:text-gray-400 dark:hover:text-blue-400">esnaadteamjo@gmail.com</a>
+            </div>
+            
+            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-lg dark:bg-darkBlue/70 dark:shadow-blue-900/10">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary mb-4 dark:text-blue-400"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <h3 class="text-lg font-semibold mb-2 dark:text-white">رقم الهاتف</h3>
+              <a href="tel:+962770495848" class="text-gray-600 hover:text-primary transition-colors duration-200 dark:text-gray-400 dark:hover:text-blue-400">0770495848</a>
+            </div>
+            
+            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-lg dark:bg-darkBlue/70 dark:shadow-blue-900/10">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary mb-4 dark:text-blue-400"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <h3 class="text-lg font-semibold mb-2 dark:text-white">العنوان</h3>
+              <p class="text-gray-600 dark:text-gray-400">الأردن</p>
+            </div>
+          </div>
+ </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary to-primary/80 text-white dark:from-blue-700 dark:to-blue-600/80">
+          <div class="absolute inset-0 bg-[url('https://raw.githubusercontent.com/lovable-gasket-486598/resources/main/images/pattern.svg')] opacity-10"></div>
+          
+          <div class="relative z-10 py-12 px-6 md:px-12">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+              <div class="text-center md:text-right max-w-md">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">انضم إلينا لصنع التغيير</h2>
+                <p class="text-white/90 mb-0 md:mb-4">
+                  كن جزءًا من فريق إسناد وساهم في تمكين الشباب وخدمة المجتمع. التطوع معنا فرصة للنمو الشخصي والمهني وإحداث تأثير إيجابي.
+                </p>
+              </div>
+              
+              <div class="flex flex-col items-center gap-4 min-w-[200px]">
+                <a 
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSdtvLb8V83I55Ih7WGo90OYsxmowfqLtvzMoucaJIHiDOurhQ/viewform?usp=header" 
+                  target="_blank"
+                  class="inline-block bg-white text-primary hover:bg-white/90 w-full py-6 px-4 text-center text-lg font-bold rounded dark:text-blue-700"
+                >
+                  تطوع معنا الآن
+                </a>
+                <a 
+                  href="#contact"
+                  class="inline-block border border-white text-white hover:bg-white/10 w-full py-2 px-4 text-center rounded"
+                >
+                  تواصل معنا
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white pt-16 pb-6 dark:bg-[#19171C]">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="space-y-4">
+          <div class="flex items-center justify-center md:justify-start gap-3">
+            <img 
+              src="https://i.postimg.cc/Znp77N6P/bng.png" 
+              alt="فريق إسناد" 
+              class="h-12 w-12 object-contain"
+            />
+            <h2 class="text-2xl font-bold text-white">إسناد</h2>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed text-center md:text-right">
+            منصة شبابية تهدف إلى تمكين الشباب من خلال توفير فرص تعليمية متميزة ونشر ثقافة العطاء في المجتمع.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold border-b border-gray-800 pb-2 mb-4 text-center md:text-right">روابط سريعة</h3>
+          <ul class="space-y-2">
+            <li><a href="#home" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-center md:text-right block">الرئيسية</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-center md:text-right block">عن الفريق</a></li>
+            <li><a href="#goals" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-center md:text-right block">المحاور والأهداف</a></li>
+            <li><a href="#videos" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-center md:text-right block">الفيديوهات</a></li>
+            <li><a href="#events" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-center md:text-right block">الفعاليات</a></li>
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold border-b border-gray-800 pb-2 mb-4 text-center md:text-right">تواصل معنا</h3>
+          <div class="space-y-2 text-center md:text-right">
+            <p class="text-gray-400 flex items-center gap-2 justify-center md:justify-end">
+              <span>هاتف:</span>
+              <a href="tel:+962770495848" class="hover:text-blue-400 transition-colors duration-200">0770495848</a>
+            </p>
+            <p class="text-gray-400 flex items-center gap-2 justify-center md:justify-end">
+              <span>البريد الإلكتروني:</span>
+              <a href="mailto:esnaadteamjo@gmail.com" class="hover:text-blue-400 transition-colors duration-200">esnaadteamjo@gmail.com</a>
+            </p>
+            <p class="text-gray-400 flex items-center gap-2 justify-center md:justify-end">
+              <span>المقر الرئيسي:</span>
+              <span>الأردن</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold border-b border-gray-800 pb-2 mb-4 text-center md:text-right">تابعنا</h3>
+          <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+            <a 
+              href="https://www.tiktok.com/@esnaadteam" 
+              target="_blank" 
+              rel="noreferrer"
+              class="bg-gray-800 hover:bg-blue-700 p-2.5 rounded-full transition-colors duration-200"
+              aria-label="تيك توك"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0z"/>
+              </svg>
+            </a>
+            <a 
+              href="https://www.instagram.com/esnaad_team" 
+              target="_blank" 
+              rel="noreferrer"
+              class="bg-gray-800 hover:bg-blue-700 p-2.5 rounded-full transition-colors duration-200"
+              aria-label="إنستجرام"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a 
+              href="https://www.facebook.com/share/19FRBqoybP/" 
+              target="_blank" 
+              rel="noreferrer"
+              class="bg-gray-800 hover:bg-blue-700 p-2.5 rounded-full transition-colors duration-200"
+              aria-label="فيسبوك"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+          </div>
+
+          <div class="mt-6">
+            <a 
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdtvLb8V83I55Ih7WGo90OYsxmowfqLtvzMoucaJIHiDOurhQ/viewform?usp=header" 
+              target="_blank"
+              class="block w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white text-center rounded"
+            >
+              للتطوع معنا
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-6 border-t border-gray-800 text-center">
+        <p class="text-gray-500 text-sm">© 2025 فريق إسناد | جميع الحقوق محفوظة</p>
+      </div>
+    </div>
+
+    <!-- Back to top button -->
+    <button
+      id="backToTop"
+      class="fixed bottom-6 left-6 bg-primary hover:bg-primary/90 text-white rounded-full p-3 shadow-lg transition-all duration-300 hover:transform hover:scale-110 z-50 opacity-0 dark:bg-blue-600 dark:hover:bg-blue-700"
+      aria-label="العودة للأعلى"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // شريط التقدم
+    window.addEventListener('scroll', () => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = (window.scrollY / scrollHeight) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+
+    // تبديل الوضع الليلي
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const htmlElement = document.documentElement;
+    const sunIcon = document.querySelector('.sun-icon');
+    const moonIcon = document.querySelector('.moon-icon');
+
+    // التحقق من تفضيلات المستخدم للنظام
+    if (localStorage.getItem('darkMode') === 'true' || 
+        (localStorage.getItem('darkMode') === null && 
+         window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlElement.classList.add('dark');
+      sunIcon.classList.add('hidden');
+      moonIcon.classList.remove('hidden');
+    } else {
+      htmlElement.classList.remove('dark');
+      sunIcon.classList.remove('hidden');
+      moonIcon.classList.add('hidden');
+    }
+
+    darkModeToggle.addEventListener('click', () => {
+      if (htmlElement.classList.contains('dark')) {
+        htmlElement.classList.remove('dark');
+        localStorage.setItem('darkMode', 'false');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      } else {
+        htmlElement.classList.add('dark');
+        localStorage.setItem('darkMode', 'true');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      }
+    });
+
+    // قائمة التلفون
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // إغلاق القائمة عند النقر على رابط
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // زر العودة للأعلى
+    const backToTopButton = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.style.opacity = '1';
+      } else {
+        backToTopButton.style.opacity = '0';
+      }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // تبويبات المحاور والأهداف
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const tabId = button.getAttribute('data-tab');
+
+        // إخفاء جميع المحتويات وإلغاء تنشيط الأزرار
+        tabContents.forEach(content => {
+          content.classList.add('hidden');
+        });
+        tabButtons.forEach(btn => {
+          btn.classList.remove('active');
+        });
+
+        // إظهار المحتوى المحدد وتنشيط الزر
+        document.getElementById(`${tabId}-content`).classList.remove('hidden');
+        button.classList.add('active');
+      });
+    });
+
+    // نافذة عرض الفيديو
+    const videoButtons = document.querySelectorAll('.video-btn');
+    const mainVideoButton = document.getElementById('mainVideoButton');
+    const videoModal = document.getElementById('videoModal');
+    const videoIframe = document.getElementById('videoIframe');
+    const videoModalTitle = document.getElementById('videoModalTitle');
+    const closeVideoModal = document.getElementById('closeVideoModal');
+    const videoModalOverlay = document.getElementById('videoModalOverlay');
+
+    // فتح نافذة الفيديو
+    function openVideoModal(videoUrl, title) {
+      videoModal.classList.remove('hidden');
+      videoIframe.src = videoUrl;
+      if (title) videoModalTitle.textContent = title;
+      document.body.style.overflow = 'hidden';
+    }
+
+    // إغلاق نافذة الفيديو
+    function closeVideoModalFunction() {
+      videoModal.classList.add('hidden');
+      videoIframe.src = '';
+      document.body.style.overflow = 'auto';
+    }
+
+    // الفيديو الرئيسي
+    mainVideoButton.addEventListener('click', () => {
+      openVideoModal('https://drive.google.com/file/d/1or9qd6_kiVidWPCbBL495zLLzS78Lm6B/preview', 'الفيديو التعريفي لفريق إسناد');
+    });
+
+    // فيديوهات البطاقات
+    videoButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const videoUrl = button.getAttribute('data-video-url');
+        const videoTitle = button.closest('.video-card').querySelector('h3').textContent;
+        openVideoModal(videoUrl, videoTitle);
+      });
+    });
+
+    // إغلاق النافذة عند النقر على الزر أو الخلفية
+    closeVideoModal.addEventListener('click', closeVideoModalFunction);
+    videoModalOverlay.addEventListener('click', closeVideoModalFunction);
+
+    // التمرير السلس للروابط
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          // إغلاق قائمة الجوال إذا كانت مفتوحة
+          if (!mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+          }
+          
+          // التمرير إلى القسم المطلوب
+          window.scrollTo({
+            top: target.offsetTop - 80, // تعويض للرأس
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // عداد الإحصائيات
+    document.addEventListener('DOMContentLoaded', () => {
+      const counters = document.querySelectorAll('.count-up');
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            const target = parseInt(counter.getAttribute('data-target'));
+            let count = 0;
+            const updateCount = () => {
+              const increment = target / 25;
+              if (count < target) {
+                count += increment;
+                counter.innerText = Math.ceil(count);
+                setTimeout(updateCount, 50);
+              } else {
+                counter.innerText = target;
+              }
+            };
+            updateCount();
+            observer.unobserve(counter);
+          }
+        });
+      }, options);
+
+      counters.forEach(counter => {
+        observer.observe(counter);
+      });
+    });
+  </script>
+</body>
+</html>
